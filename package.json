@@ -19,9 +19,11 @@
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
+    "handlebars": "^4.7.9",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.2.0",
     "mysql2": "^3.16.3",
+    "nodemailer": "^9.0.3",
     "nodemon": "^3.1.11",
     "path": "^0.12.7",
     "xlsx": "^0.18.5"

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tus Boletas — {{sorteoNombre}}</title>
+    <!--[if mso]>
+    <noscript>
+    <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+    </noscript>
+    <![endif]-->
+</head>
+
+<body style="margin:0;padding:0;background-color:#f0f7f4;font-family:Arial,Helvetica,sans-serif;">
+
+    <!-- Preheader oculto (aparece en la vista previa del correo) -->
+    <div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#f0f7f4;">
+        Hola {{nombres}}, tus boletas para {{sorteoNombre}} ya están listas. Número(s): {{boletasResumen}}
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f7f4;">
+        <tr>
+            <td align="center" style="padding:32px 16px;">
+
+                <!-- ╔══ CONTENEDOR PRINCIPAL ══╗ -->
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;
+                    overflow:hidden;box-shadow:0 4px 24px rgba(6,100,75,0.10);">
+
+                    <!-- ══ HEADER ══════════════════════════════════════════ -->
+                    <tr>
+                        <td style="background:linear-gradient(135deg,#065f46 0%,#059669 60%,#34d399 100%);
+                     padding:0;">
+                            <!-- Franja decorativa superior -->
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="height:5px;background:linear-gradient(90deg,#d4af37,#f5d76e,#d4af37);">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:28px 32px 24px;text-align:center;">
+                                        <!-- Logo -->
+                                        <img src="cid:{{logoCid}}" alt="COOPSERP" width="140" height="auto"
+                                            style="display:block;margin:0 auto 16px;border-radius:8px;background:rgba(255,255,255,0.15);padding:8px 12px;" />
+                                        <!-- Título -->
+                                        <div style="font-size:11px;letter-spacing:4px;color:#a7f3d0;
+                               text-transform:uppercase;font-weight:700;margin-bottom:8px;">
+                                            ✦ BOLETA DE PARTICIPACIÓN ✦
+                                        </div>
+                                        <h1 style="margin:0;font-size:26px;font-weight:900;color:#ffffff;
+                              text-transform:uppercase;letter-spacing:2px;
+                              text-shadow:0 2px 8px rgba(0,0,0,0.2);">
+                                            {{sorteoNombre}}
+                                        </h1>
+                                    </td>
+                                </tr>
+                                <!-- Franja decorativa inferior -->
+                                <tr>
+                                    <td
+                                        style="height:4px;background:linear-gradient(90deg,transparent,#d4af37,#f5d76e,#d4af37,transparent);">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- ══ SALUDO ════════════════════════════════════════════ -->
+                    <tr>
+                        <td style="padding:32px 36px 0;">
+                            <h2 style="margin:0 0 8px;font-size:20px;color:#065f46;font-weight:800;">
+                                Hola, {{nombres}} {{apellidos}} 👋
+                            </h2>
+                            <p style="margin:0;font-size:15px;color:#374151;line-height:1.6;">
+                                Tus boletas para el sorteo <strong style="color:#059669;">{{sorteoNombre}}</strong>
+                                han sido registradas exitosamente. A continuación encontrarás todos los detalles.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- ══ DATOS DEL SORTEO ══════════════════════════════════ -->
+                    <tr>
+                        <td style="padding:24px 36px 0;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="background:#f0fdf9;border-radius:12px;border:1px solid #a7f3d0;">
+                                <tr>
+                                    <td style="padding:20px 24px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <!-- Documento -->
+                                                <td width="33%" style="padding:0 8px 0 0;vertical-align:top;">
+                                                    <div style="font-size:9px;font-weight:700;color:#6b7280;
+                                     text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+                                                        N° Documento
+                                                    </div>
+                                                    <div style="font-size:15px;font-weight:700;color:#065f46;">
+                                                        {{documento}}
+                                                    </div>
+                                                </td>
+                                                <!-- Total boletas -->
+                                                <td width="33%" style="padding:0 8px;vertical-align:top;
+                                              border-left:1px solid #d1fae5;border-right:1px solid #d1fae5;">
+                                                    <div style="font-size:9px;font-weight:700;color:#6b7280;
+                                     text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+                                                        Total Boletas
+                                                    </div>
+                                                    <div style="font-size:15px;font-weight:700;color:#065f46;">
+                                                        {{totalBoletas}}
+                                                    </div>
+                                                </td>
+                                                <!-- Fecha sorteo -->
+                                                <td width="34%" style="padding:0 0 0 8px;vertical-align:top;">
+                                                    <div style="font-size:9px;font-weight:700;color:#6b7280;
+                                     text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+                                                        Fecha del Sorteo
+                                                    </div>
+                                                    <div style="font-size:14px;font-weight:700;color:#065f46;">
+                                                        {{fechaSorteo}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- ══ NÚMEROS DE BOLETA ══════════════════════════════════ -->
+                    <tr>
+                        <td style="padding:28px 36px 0;">
+                            <!-- Título sección -->
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                                <tr>
+                                    <td style="border-top:1px solid #d1fae5;"></td>
+                                    <td style="white-space:nowrap;padding:0 14px;">
+                                        <span style="font-size:11px;font-weight:800;color:#065f46;
+                                text-transform:uppercase;letter-spacing:2px;
+                                background:#ffffff;padding:4px 16px;
+                                border:1px solid #059669;border-radius:20px;">
+                                            Tus Números de Boleta
+                                        </span>
+                                    </td>
+                                    <td style="border-top:1px solid #d1fae5;"></td>
+                                </tr>
+                            </table>
+
+                            <!-- Grid de boletas -->
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="text-align:center;padding-bottom:4px;">
+                                        {{#each boletas}}
+                                        <!-- Cada boleta -->
+                                        <div style="display:inline-block;margin:6px;">
+                                            <table cellpadding="0" cellspacing="0" border="0" style="border:2px solid #059669;border-radius:12px;
+                                  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+                                  min-width:110px;overflow:hidden;">
+                                                <tr>
+                                                    <td style="background:#059669;padding:4px 12px;text-align:center;">
+                                                        <span style="font-size:9px;font-weight:700;color:#ffffff;
+                                        text-transform:uppercase;letter-spacing:2px;">
+                                                            Boleta
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:10px 16px;text-align:center;">
+                                                        <span style="font-size:38px;font-weight:900;color:#065f46;
+                                        letter-spacing:4px;font-family:monospace;">
+                                                            {{this.numeroFormateado}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        {{/each}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- ══ BANNER SUERTE ══════════════════════════════════════ -->
+                    <tr>
+                        <td style="padding:28px 36px 0;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:linear-gradient(135deg,#065f46,#059669);
+                           border-radius:12px;overflow:hidden;">
+                                <tr>
+                                    <td style="padding:20px 24px;text-align:center;">
+                                        <div style="font-size:22px;margin-bottom:6px;">🍀</div>
+                                        <div style="font-size:16px;font-weight:800;color:#ffffff;letter-spacing:0.5px;">
+                                            ¡Mucha suerte en el sorteo!
+                                        </div>
+                                        <div style="font-size:13px;color:#a7f3d0;margin-top:4px;">
+                                            Recuerda guardar este correo como comprobante de participación.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+                    <tr>
+                        <td style="padding:28px 36px 24px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="border-top:1px solid #e5e7eb;padding-top:20px;">
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <img src="cid:{{logoCid}}" alt="COOPSERP" width="90" height="auto"
+                                            style="display:block;margin:0 auto 10px;opacity:0.6;" />
+                                        <p style="margin:0 0 4px;font-size:12px;color:#6b7280;font-weight:600;">
+                                            COOPSERP — Cooperativa de Servidores Públicos y Jubilados de Colombia
+                                        </p>
+                                        <p style="margin:0 0 4px;font-size:11px;color:#9ca3af;">
+                                            Este es un mensaje automático, por favor no respondas este correo.
+                                        </p>
+                                        <p style="margin:0;font-size:11px;color:#9ca3af;">
+                                            © {{year}} Todos los derechos reservados.
+                                        </p>
+                                        <!-- Unsubscribe obligatorio para evitar SPAM -->
+                                        <p style="margin:12px 0 0;font-size:10px;color:#d1d5db;">
+                                            <a href="{{unsubscribeUrl}}"
+                                                style="color:#9ca3af;text-decoration:underline;">
+                                                Dar de baja / Unsubscribe
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+                <!-- ╚══ FIN CONTENEDOR PRINCIPAL ══╝ -->
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

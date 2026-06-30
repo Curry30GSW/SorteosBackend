@@ -3,7 +3,7 @@ const pool = require('../config/ConectDb');
 class Boleta {
     static async findBySorteo(sorteoId) {
         const [rows] = await pool.query(
-            `SELECT b.*, a.documento, a.nombres, a.apellidos 
+            `SELECT b.*, a.documento, a.nombres, a.apellidos, a.email
             FROM boletas b
             JOIN asociados a ON b.asociado_id = a.id
             WHERE b.sorteo_id = ?
@@ -19,14 +19,14 @@ class Boleta {
             JOIN sorteos s ON b.sorteo_id = s.id
             WHERE b.asociado_id = ?`;
         const params = [asociadoId];
-        
+
         if (sorteoId) {
             query += ' AND b.sorteo_id = ?';
             params.push(sorteoId);
         }
-        
+
         query += ' ORDER BY b.created_at DESC';
-        
+
         const [rows] = await pool.query(query, params);
         return rows;
     }
@@ -36,7 +36,7 @@ class Boleta {
         const [asociados] = await pool.query(
             'SELECT id FROM asociados WHERE activo = 1'
         );
-        
+
         if (asociados.length === 0) {
             throw new Error('No hay asociados activos para asignar boletas');
         }
@@ -73,7 +73,7 @@ class Boleta {
             [sorteoId]
         );
 
-        return { 
+        return {
             total_generadas: result.affectedRows,
             total_asociados: asociados.length
         };
@@ -98,7 +98,7 @@ class Boleta {
             'INSERT INTO boletas (sorteo_id, asociado_id, numero) VALUES (?, ?, ?)',
             [sorteoId, asociadoId, numero]
         );
-        
+
         return { id: result.insertId };
     }
 
@@ -107,11 +107,11 @@ class Boleta {
             'UPDATE boletas SET es_ganadora = 1 WHERE sorteo_id = ? AND numero = ?',
             [sorteoId, numero]
         );
-        
+
         if (result.affectedRows === 0) {
             throw new Error(`No se encontró la boleta ${numero} en el sorteo ${sorteoId}`);
         }
-        
+
         return result.affectedRows > 0;
     }
 
@@ -121,7 +121,7 @@ class Boleta {
             'SELECT * FROM boletas WHERE id = ? AND sorteo_id = ?',
             [boletaId, sorteoId]
         );
-        
+
         if (boleta.length === 0) {
             throw new Error('Boleta no encontrada o no pertenece a este sorteo');
         }
@@ -136,7 +136,7 @@ class Boleta {
             'DELETE FROM boletas WHERE id = ? AND sorteo_id = ?',
             [boletaId, sorteoId]
         );
-        
+
         return result.affectedRows > 0;
     }
 
@@ -146,7 +146,7 @@ class Boleta {
             'SELECT * FROM boletas WHERE sorteo_id = ? AND asociado_id = ?',
             [sorteoId, asociadoId]
         );
-        
+
         if (boletas.length === 0) {
             throw new Error('Este asociado no tiene boletas en este sorteo');
         }
@@ -162,7 +162,7 @@ class Boleta {
             'DELETE FROM boletas WHERE sorteo_id = ? AND asociado_id = ?',
             [sorteoId, asociadoId]
         );
-        
+
         return {
             eliminadas: result.affectedRows,
             total: boletas.length
