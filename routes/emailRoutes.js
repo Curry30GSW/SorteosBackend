@@ -41,23 +41,27 @@ const formatFecha = (fecha) => {
     }
 };
 
-const buildTemplateData = ({ nombres, apellidos, documento, sorteo, fechaSorteo, boletas, urlConsulta }) => ({
-    nombres,
-    apellidos: apellidos || '',
-    documento: documento || 'No especificado',
-    sorteoNombre: sorteo || 'Sorteo COOPSERP',
-    fechaSorteo: formatFecha(fechaSorteo),
-    totalBoletas: boletas.length,
-    boletas: boletas.map(b => ({
-        ...b,
-        numeroFormateado: formatNumero(b.numero),
-    })),
-    boletasResumen: boletas.map(b => formatNumero(b.numero)).join(', '),
-    urlConsulta: urlConsulta || '',
-    year: new Date().getFullYear(),
-    // Agregar el CID del logo para referencia en el template
-    logoCid: 'logo_coopserp'
-});
+const buildTemplateData = ({ nombres, apellidos, documento, sorteo, fechaSorteo, boletas, urlConsulta }) => {
+    // Ordenar por ID antes de formatear
+    const boletasOrdenadas = [...boletas].sort((a, b) => a.id - b.id);
+
+    return {
+        nombres,
+        apellidos: apellidos || '',
+        documento: documento || 'No especificado',
+        sorteoNombre: sorteo || 'Sorteo COOPSERP',
+        fechaSorteo: formatFecha(fechaSorteo),
+        totalBoletas: boletasOrdenadas.length,
+        boletas: boletasOrdenadas.map(b => ({
+            ...b,
+            numeroFormateado: formatNumero(b.numero),
+        })),
+        boletasResumen: boletasOrdenadas.map(b => formatNumero(b.numero)).join(', '),
+        urlConsulta: urlConsulta || '',
+        year: new Date().getFullYear(),
+        logoCid: 'logo_coopserp'
+    };
+};
 
 // ─── POST /enviar-boletas-correo ─────────────────────────────────────────────
 router.post('/enviar-boletas-correo', async (req, res) => {
